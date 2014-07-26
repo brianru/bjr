@@ -6,6 +6,7 @@
                  [hiccup "1.0.5"]
                  [ring-server "0.3.1"]]
   :plugins [[lein-ring "0.8.10"]]
+  :min-lein-version "2.0.0"
   :ring {:handler brian.handler/app
          :init brian.handler/init
          :destroy brian.handler/destroy}
