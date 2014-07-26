@@ -4,7 +4,8 @@
             [hiccup.core :refer :all]))
 
 (defn home []
-  (layout/common [:h1 "Hello World!"]
+  (layout/common [:div.top-banner
+                  [:div "Hello World!"]]
                  [:h2 "My name is Brian James Rubinton."]
                  [:br]
                  [:h2 "This is my website."]
@@ -13,7 +14,7 @@
                  [:div [:span "other stats"]]
                  ))
 
-; top: big, full screen-height image with intro in the middle
+; top: big, full screen-height image with intro in the middle (height: 100vh)
 ;      and a button to contact me. maybe it opens a form right there,
 ;      or maybe it scrolls you to the bottom
 
