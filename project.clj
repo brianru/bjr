@@ -20,5 +20,5 @@
                    [ring/ring-devel "1.2.1"]
                    [compojure "1.1.6"]
                    [hiccup "1.0.5"]
-                   [ring-server "0.3.1"]]
+                   [ring-server "0.3.1"]
                    ]}})
