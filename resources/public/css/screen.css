@@ -8,3 +8,7 @@ h1 {
     text-align: center;
 }
 
+.top-banner {
+    height: 100vh;
+    background: url(http://thepatternlibrary.com/img/ac.png);
+}
