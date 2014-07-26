@@ -18,12 +18,9 @@
   (layout/common
     [:div.top-banner
      [:div [:ul
+            ; use initial when viewed from mobile phone
             [:li [:span.my-name "Brian James Rubinton"]]
             [:li github-icon twitter-icon linkedin-icon]]]]
-    ;[:h2 "This is my website."]
-    ;[:div [:span "links to stuff"]]
-    ;[:div [:span "github stats go here"]]
-    ;[:div [:span "other stats"]]
     ))
 
 ; top: big, full screen-height image with intro in the middle (height: 100vh)
