@@ -8,7 +8,35 @@ h1 {
     text-align: center;
 }
 
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
 .top-banner {
     height: 100vh;
     background: url(http://thepatternlibrary.com/img/ac.png);
+}
+
+.top-banner > div {
+    background: black;
+    opacity: 0.7;
+    text-align: center;
+    height: 100vh;
+    padding-top: 30vh;
+}
+
+.top-banner > div {
+    color: #F1F1F1;
+    font-size: 32px;
+}
+
+.top-banner ul > li > a {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.top-banner img.icon {
+    height: 32px;
+    width:  32px;
 }

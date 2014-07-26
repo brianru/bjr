@@ -6,3 +6,5 @@
 (doc include-css)
 (find-doc "css")
 (find-doc "js")
+(use 'brian.repl)
+(start-server)
