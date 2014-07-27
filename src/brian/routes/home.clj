@@ -23,9 +23,7 @@
             [:li github-icon twitter-icon linkedin-icon]]]]
     ))
 
-; top: big, full screen-height image with intro in the middle (height: 100vh)
-;      and a button to contact me. maybe it opens a form right there,
-;      or maybe it scrolls you to the bottom
+; top: big, full screen-height image with intro in the middle
 
 ; middle: what i want to do, what i'm doing, and what i've done
 ;         in that order

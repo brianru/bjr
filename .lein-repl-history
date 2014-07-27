@@ -47,3 +47,7 @@ hash-map
 res
 (first res)
 (nth res 24)
+(start-server)
+(use 'brian/core)
+(use 'brian.repl)
+(start-server)
