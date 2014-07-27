@@ -1,7 +1,7 @@
 (ns brian.models.db
   (:require [clojure.java.jdbc :as sql]
             [clojure-csv.core :as csv]
-            [environ.core :as env]
+            [environ.core :refer [env]]
             [korma.db :refer [defdb transaction]]
             [korma.core :refer :all]))
 
