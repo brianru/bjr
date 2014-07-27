@@ -8,3 +8,42 @@
 (find-doc "js")
 (use 'brian.repl)
 (start-server)
+(use 'brian.models.db)
+(quit)
+(use 'brian.models.db)
+csv
+db
+csv/parse-csv
+parse-csv
+brian.models.db/csv/parse-csv
+(find-doc "csv")
+clojure-csv.core/parse-csv
+(slurp "resources/shelfari_data.tsv")
+(clojure-csv.core/parse-csv (slurp "resources/shelfari_data.tsv") {:delimiter "\\t"})
+(clojure-csv.core/parse-csv (slurp "resources/shelfari_data.tsv") :delimiter "\\t")
+(clojure-csv.core/parse-csv (slurp "resources/shelfari_data.tsv") :delimiter \t)
+(def data (clojure-csv.core/parse-csv (slurp "resources/shelfari_data.tsv") :delimiter \t))
+data
+(nth data 0)
+(def data (clojure-csv.core/parse-csv (slurp "resources/shelfari_data.tsv") :delimiter \tab))
+(nth data 0)
+(nth data 2)
+(nth data 3)
+(nth data 4)
+(nth data 5)
+(map {} (range 10))
+dict
+(map hash-map (range 10))
+hash-map
+(hash-map)
+(map #(hash-map) (range 10))
+(map #(hash-map %) (range 10))
+(map #(hash-map % &) (range 10))
+(map #(hash-map % %) (range 10))
+(mapv #(hash-map % %) (range 10))
+(def hdrs (first data))
+(def rows (rest data))
+(def res (mapv #(zipmap hdrs %) rows))
+res
+(first res)
+(nth res 24)

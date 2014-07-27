@@ -2,10 +2,15 @@
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :dependencies [[org.clojure/clojure "1.6.0"]
+                 [environ "0.5.0"]
                  [compojure "1.1.6"]
                  [hiccup "1.0.5"]
-                 [ring-server "0.3.1"]]
-  :plugins [[lein-ring "0.8.10"]]
+                 [ring-server "0.3.1"]
+                 [org.clojure/java.jdbc "0.3.4"]
+                 [postgresql/postgresql "9.1-901.jdbc4"]
+                 [clojure-csv/clojure-csv "2.0.1"] ]
+  :plugins [[lein-ring "0.8.10"]
+            [lein-environ "0.5.0"]]
   :min-lein-version "2.0.0"
   :ring {:handler brian.handler/app
          :init brian.handler/init
@@ -16,10 +21,5 @@
    {:ring
     {:open-browser? false, :stacktraces? false, :auto-reload? false}}
    :dev
-   {:dependencies [[org.clojure/clojure "1.6.0"]
-                   [ring-mock "0.1.5"]
-                   [ring/ring-devel "1.2.1"]
-                   [compojure "1.1.6"]
-                   [hiccup "1.0.5"]
-                   [ring-server "0.3.1"]
-                   ]}})
+   {:dependencies [[ring-mock "0.1.5"]
+                   [ring/ring-devel "1.2.1"]]}})
