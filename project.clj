@@ -8,7 +8,8 @@
                  [ring-server "0.3.1"]
                  [org.clojure/java.jdbc "0.3.4"]
                  [postgresql/postgresql "9.1-901.jdbc4"]
-                 [clojure-csv/clojure-csv "2.0.1"] ]
+                 [korma "0.3.2"]
+                 [clojure-csv/clojure-csv "2.0.1"]]
   :plugins [[lein-ring "0.8.10"]
             [lein-environ "0.5.0"]]
   :min-lein-version "2.0.0"
