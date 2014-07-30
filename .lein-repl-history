@@ -59,3 +59,41 @@ res
 (quit)
 (use 'brian.repl)
 (start-server)
+(doc partial)
+(slurp "/resources/shelfari_data.tsv")
+(slurp "resources/shelfari_data.tsv")
+(use 'brian.models.db)
+(cons 3 [1 2 3]])
+(cons 3 [1 2 3])
+(def a {:a 2 :b 2 :c 3})
+a
+(:a 3)
+(:a a)
+(#{:a :b} a)
+(#{:a} a)
+(#(:a) a)
+(doc select-keys)
+(select-keys a [:a :c :f])
+parse-tabular-data
+(find-doc "parse-tab")
+(find "parse-tab")
+(doc brian.models.db/parse-tabular-data)
+brian.models.db/parse-tabular-data
+get-tabular-data
+brian.models.db/parse-tabular-data
+brian.models.db/get-tabular-data
+(require 'brian.models.db)
+parse-tabular-data
+get-tabular-data
+'brian.models.db
+brian.models.db
+(quit)
+(doc use)
+(use 'brian.models.db)
+db-base
+get-tabular-data
+(def data (get-tabular-data "resources/shelfari_data.tsv" \tab))
+(nth data 20)
+(nth data 22)
+(nth data 25)
+(quit)
