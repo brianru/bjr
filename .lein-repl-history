@@ -97,3 +97,7 @@ get-tabular-data
 (nth data 22)
 (nth data 25)
 (quit)
+db
+(use 'brian.models/db)
+(use 'brian.models.db)
+db

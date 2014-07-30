@@ -1,6 +1,8 @@
 (ns brian.models.db
   (:require [clojure-csv.core :as csv])
-  (:use [fogus.datalog.bacwn :only (build-work-plan run-work-plan)]
+  (:use [clojure.string :only (blank?)]
+        [clojure.set :only (rename-keys)]
+        [fogus.datalog.bacwn :only (build-work-plan run-work-plan)]
         [fogus.datalog.bacwn.macros :only (<- ?- make-database)]
         [fogus.datalog.bacwn.impl.rules :only (rules-set)]
         [fogus.datalog.bacwn.impl.database :only (add-tuples)]))
@@ -8,7 +10,7 @@
 
 (def db-base
   (make-database
-    (relation :book [:isbn :author :title :pagecount])
+    (relation :book [:isbn :author :title])
     (index :book :isbn)
 
     (relation :start [:isbn :when])
@@ -24,12 +26,16 @@
         rows (rest tsv)]
     (mapv #(zipmap hdrs %) rows)))
 
+(defn filter-and-swap [d old-ks new-ks]
+  (rename-keys (select-keys d old-ks)
+               (zipmap old-ks new-ks)))
+
 ; TODO how do I only iterate through the entries once?
 ; TODO how do I use a map instead of the two vectors?
-; FIXME this doesn't work.
 (defn parse-entries [relation d old-ks new-ks]
-  (let [filtered (mapv #(select-keys % old-ks) d)]
-    (mapv #(cons relation (zipmap new-ks (vals %))) filtered)))
+  (let [massaged (mapv #(filter-and-swap % old-ks new-ks) d)
+        filtered (filter #(not-any? blank? (vals %)) massaged)]
+    (mapv #(flatten (cons relation %)) filtered)))
 
 (defn parse-books [d]
   (parse-entries :book d
@@ -45,8 +51,6 @@
                  [:isbn :when]))
 
 (def db
-  (let [d (get-tabular-data "resources/shelfari_data.tsv" \tab)]
-    (apply (partial add-tuples db-base)
-           (concat (parse-books d)
-                   (parse-starts d)
-                   (parse-finishes d)))))
+  (let [raw    (get-tabular-data "resources/shelfari_data.tsv" \tab)
+        parsed (concat (parse-books raw) (parse-starts raw) (parse-finishes raw))]
+    (apply (partial add-tuples db-base) parsed)))
