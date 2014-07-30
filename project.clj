@@ -2,14 +2,13 @@
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [environ "0.5.0"]
                  [compojure "1.1.6"]
                  [hiccup "1.0.5"]
                  [ring-server "0.3.1"]
                  [fogus/bacwn "0.4.0"]
                  [clojure-csv/clojure-csv "2.0.1"]]
   :plugins [[lein-ring "0.8.10"]
-            [lein-environ "0.5.0"]]
+            [lein-marginalia "0.7.1"]]
   :min-lein-version "2.0.0"
   :ring {:handler brian.handler/app
          :init brian.handler/init

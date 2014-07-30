@@ -52,5 +52,7 @@
 
 (def db
   (let [raw    (get-tabular-data "resources/shelfari_data.tsv" \tab)
-        parsed (concat (parse-books raw) (parse-starts raw) (parse-finishes raw))]
+        parsed (concat (parse-books raw)
+                       (parse-starts raw)
+                       (parse-finishes raw))]
     (apply (partial add-tuples db-base) parsed)))
