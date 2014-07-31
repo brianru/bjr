@@ -2,7 +2,7 @@
   (:require [clojure-csv.core :as csv])
   (:use [clojure.string :only (blank?)]
         [clojure.set :only (rename-keys)]
-        [fogus.datalog.bacwn :only (build-work-plan run-work-plan)]
+        [fogus.datalog.bacwn :only (q build-work-plan run-work-plan)]
         [fogus.datalog.bacwn.macros :only (<- ?- make-database)]
         [fogus.datalog.bacwn.impl.rules :only (rules-set)]
         [fogus.datalog.bacwn.impl.database :only (add-tuples)]))
@@ -18,6 +18,18 @@
 
     (relation :finish [:isbn :when])
     (index :finish :isbn)))
+
+(def rules
+  (rules-set
+    (<- (:attempt :author ?a :title ?t :when ?w)
+        (:book :isbn ?id :author ?a :title ?t)
+        (:start :isbn ?id :when ?w))
+    (<- (:success :author ?a :title ?t :when ?w)
+        (:book :isbn ?id :author ?a :title ?t)
+        (:finish :isbn ?id :when ?w))))
+
+(def wp-1 (build-work-plan rules (?- :attempt :author ?a
+                                     :title ?t :when ?q)))
 
 ; (parse-tabular-data (env :raw-data) \tab)
 (defn get-tabular-data [path delim]
@@ -56,3 +68,7 @@
                        (parse-starts raw)
                        (parse-finishes raw))]
     (apply (partial add-tuples db-base) parsed)))
+
+(def books-read (q (?- :attempt :author ?a :title ?t :when ?w)
+                   db rules {}))
+

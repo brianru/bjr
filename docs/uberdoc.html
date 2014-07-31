@@ -3029,7 +3029,7 @@ net.brehaut.ClojureTools = (function (SH) {
   };
 })(SyntaxHighlighter);
 </script><title>brian -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">brian</h1><h2 class="project-version">0.1.0-SNAPSHOT</h2><br /><p>FIXME: write description</p>
-</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.6.0</td></tr><tr><td class="dep-name">environ</td><td class="dotted"><hr /></td><td class="dep-version">0.5.0</td></tr><tr><td class="dep-name">compojure</td><td class="dotted"><hr /></td><td class="dep-version">1.1.6</td></tr><tr><td class="dep-name">hiccup</td><td class="dotted"><hr /></td><td class="dep-version">1.0.5</td></tr><tr><td class="dep-name">ring-server</td><td class="dotted"><hr /></td><td class="dep-version">0.3.1</td></tr><tr><td class="dep-name">fogus/bacwn</td><td class="dotted"><hr /></td><td class="dep-version">0.4.0</td></tr><tr><td class="dep-name">clojure-csv/clojure-csv</td><td class="dotted"><hr /></td><td class="dep-version">2.0.1</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#brian.handler">brian.handler</a></li><li><a href="#brian.models.db">brian.models.db</a></li><li><a href="#brian.models.schema">brian.models.schema</a></li><li><a href="#brian.repl">brian.repl</a></li><li><a href="#brian.routes.home">brian.routes.home</a></li><li><a href="#brian.views.layout">brian.views.layout</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.handler" name="brian.handler"><h1 class="project-name">brian.handler</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.6.0</td></tr><tr><td class="dep-name">compojure</td><td class="dotted"><hr /></td><td class="dep-version">1.1.6</td></tr><tr><td class="dep-name">hiccup</td><td class="dotted"><hr /></td><td class="dep-version">1.0.5</td></tr><tr><td class="dep-name">ring-server</td><td class="dotted"><hr /></td><td class="dep-version">0.3.1</td></tr><tr><td class="dep-name">fogus/bacwn</td><td class="dotted"><hr /></td><td class="dep-version">0.4.0</td></tr><tr><td class="dep-name">clojure-csv/clojure-csv</td><td class="dotted"><hr /></td><td class="dep-version">2.0.1</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#brian.handler">brian.handler</a></li><li><a href="#brian.models.db">brian.models.db</a></li><li><a href="#brian.models.schema">brian.models.schema</a></li><li><a href="#brian.repl">brian.repl</a></li><li><a href="#brian.routes.api">brian.routes.api</a></li><li><a href="#brian.routes.home">brian.routes.home</a></li><li><a href="#brian.views.layout">brian.views.layout</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.handler" name="brian.handler"><h1 class="project-name">brian.handler</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(ns brian.handler
   (:require [compojure.core :refer [defroutes routes]]
             [ring.middleware.resource :refer [wrap-resource]]
@@ -3037,6 +3037,7 @@ net.brehaut.ClojureTools = (function (SH) {
             [hiccup.middleware :refer [wrap-base-url]]
             [compojure.handler :as handler]
             [compojure.route :as route]
+            [brian.routes.api :refer [api-routes]]
             [brian.routes.home :refer [home-routes]]))</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(defn init []
   (println &quot;brian is starting&quot;))</pre></td></tr><tr><td class="docs">
@@ -3046,7 +3047,7 @@ net.brehaut.ClojureTools = (function (SH) {
   (route/resources &quot;/&quot;)
   (route/not-found &quot;Not Found&quot;))</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(def app
-  (-&gt; (routes home-routes app-routes)
+  (-&gt; (routes home-routes api-routes app-routes)
       (handler/site)
       (wrap-base-url)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.models.db" name="brian.models.db"><h1 class="project-name">brian.models.db</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(ns brian.models.db
@@ -3091,7 +3092,9 @@ net.brehaut.ClojureTools = (function (SH) {
                  [:isbn :when]))</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(def db
   (let [raw    (get-tabular-data &quot;resources/shelfari_data.tsv&quot; \tab)
-        parsed (concat (parse-books raw) (parse-starts raw) (parse-finishes raw))]
+        parsed (concat (parse-books raw)
+                       (parse-starts raw)
+                       (parse-finishes raw))]
     (apply (partial add-tuples db-base) parsed)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.models.schema" name="brian.models.schema"><h1 class="project-name">brian.models.schema</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(ns brian.models.schema
   (:require [brian.models.db :refer :all]))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.repl" name="brian.repl"><h1 class="project-name">brian.repl</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
@@ -3123,7 +3126,14 @@ net.brehaut.ClojureTools = (function (SH) {
     (println (str &quot;You can view the site at http://localhost:&quot; port))))</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(defn stop-server []
   (.stop @server)
-  (reset! server nil))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.routes.home" name="brian.routes.home"><h1 class="project-name">brian.routes.home</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+  (reset! server nil))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.routes.api" name="brian.routes.api"><h1 class="project-name">brian.routes.api</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(ns brian.routes.api
+  (:require [compojure.core :refer :all]
+            [brian.models.db :refer :all]))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn books []
+   (str db))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defroutes api-routes
+  (GET &quot;/api/books&quot; [] (books)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.routes.home" name="brian.routes.home"><h1 class="project-name">brian.routes.home</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(ns brian.routes.home
   (:require [compojure.core :refer :all]
             [brian.views.layout :as layout]

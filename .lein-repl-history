@@ -143,3 +143,46 @@ a
 (doc print)
 (print db)
 (doc defmethod)
+q
+(use 'fogus.datalog.bacwn)
+q
+(doc q)
+(start-server)
+(use 'brian.repl)
+(start-server)
+(use 'brian.models.db)
+db
+q
+?-
+<-
+(doc ?-)
+(use 'fogus.datalog.bacwn.macros)
+(doc ?-)
+q
+(doc q)
+(q (?- :books :book/title ?title) db nil nil)
+build-work-plan
+(load 'brian.models.db)
+(use 'brian.models.db)
+rules
+(stop-server)
+(quit)
+(use 'brian.models.db)
+rules
+wp-1
+db
+(run-work-plan wp-1 db {})
+(use 'fogus.datalog.bacwn)
+(run-work-plan wp-1 db {})
+(def res (run-work-plan wp-1 db {})
+)
+(nth res 40)
+size
+len
+length
+(find-doc "length")
+(find-doc "count")
+(count res)
+(quit)
+(use 'brian.models.db)
+books-read
