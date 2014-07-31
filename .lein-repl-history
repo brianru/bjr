@@ -186,3 +186,10 @@ length
 (quit)
 (use 'brian.models.db)
 books-read
+(set! *print-length* 10)
+books-read
+(doc contains?)
+(find-doc "string contains")
+(find-doc "string" "contains")
+(find-doc "contains")
+(quit)

@@ -5,6 +5,7 @@
 
 ; query db and return json of results
 (defn books []
+  "Query the database for a list of books."
    (str db))
 
 (defroutes api-routes

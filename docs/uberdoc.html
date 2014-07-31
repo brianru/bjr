@@ -3054,7 +3054,7 @@ net.brehaut.ClojureTools = (function (SH) {
   (:require [clojure-csv.core :as csv])
   (:use [clojure.string :only (blank?)]
         [clojure.set :only (rename-keys)]
-        [fogus.datalog.bacwn :only (build-work-plan run-work-plan)]
+        [fogus.datalog.bacwn :only (q build-work-plan run-work-plan)]
         [fogus.datalog.bacwn.macros :only (&lt;- ?- make-database)]
         [fogus.datalog.bacwn.impl.rules :only (rules-set)]
         [fogus.datalog.bacwn.impl.database :only (add-tuples)]))</pre></td></tr><tr><td class="docs">
@@ -3066,12 +3066,25 @@ net.brehaut.ClojureTools = (function (SH) {
     (index :start :isbn)
     (relation :finish [:isbn :when])
     (index :finish :isbn)))</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(defn get-tabular-data [path delim]
+</td><td class="codes"><pre class="brush: clojure">(def rules
+  (rules-set
+    (&lt;- (:attempt :author ?a :title ?t :when ?w)
+        (:book :isbn ?id :author ?a :title ?t)
+        (:start :isbn ?id :when ?w))
+    (&lt;- (:success :author ?a :title ?t :when ?w)
+        (:book :isbn ?id :author ?a :title ?t)
+        (:finish :isbn ?id :when ?w))))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(def wp-1 (build-work-plan rules (?- :attempt :author ?a
+                                     :title ?t :when ?q)))</pre></td></tr><tr><td class="docs"><p>Constructs a vector of maps from spreadsheet data
+   using the first row as keys.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn get-tabular-data
+  [path delim]
   (let [tsv  (csv/parse-csv (slurp path) :delimiter delim)
         hdrs (first tsv)
         rows (rest tsv)]
-    (mapv #(zipmap hdrs %) rows)))</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(defn filter-and-swap [d old-ks new-ks]
+    (mapv #(zipmap hdrs %) rows)))</pre></td></tr><tr><td class="docs"><p>Filter map by keys (old-ks) then swap old keys for new keys.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn filter-and-swap
+  [d old-ks new-ks]
   (rename-keys (select-keys d old-ks)
                (zipmap old-ks new-ks)))</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(defn parse-entries [relation d old-ks new-ks]
@@ -3095,7 +3108,11 @@ net.brehaut.ClojureTools = (function (SH) {
         parsed (concat (parse-books raw)
                        (parse-starts raw)
                        (parse-finishes raw))]
-    (apply (partial add-tuples db-base) parsed)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.models.schema" name="brian.models.schema"><h1 class="project-name">brian.models.schema</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+    (apply (partial add-tuples db-base) parsed)))</pre></td></tr><tr><td class="docs"><p>Queries the database for books that have been read.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn books-read
+  []
+  (q (?- :attempt :author ?a :title ?t :when ?w)
+     db rules {}))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.models.schema" name="brian.models.schema"><h1 class="project-name">brian.models.schema</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(ns brian.models.schema
   (:require [brian.models.db :refer :all]))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.repl" name="brian.repl"><h1 class="project-name">brian.repl</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(ns brian.repl
@@ -3123,14 +3140,17 @@ net.brehaut.ClojureTools = (function (SH) {
                     :auto-reload? true
                     :destroy destroy
                     :join true}))
-    (println (str &quot;You can view the site at http://localhost:&quot; port))))</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(defn stop-server []
+    (println (str &quot;You can view the site at http://localhost:&quot; port))))</pre></td></tr><tr><td class="docs"><p>stop the server from the REPL</p>
+</td><td class="codes"><pre class="brush: clojure">(defn stop-server
+  []
   (.stop @server)
   (reset! server nil))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.routes.api" name="brian.routes.api"><h1 class="project-name">brian.routes.api</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(ns brian.routes.api
   (:require [compojure.core :refer :all]
-            [brian.models.db :refer :all]))</pre></td></tr><tr><td class="docs">
+            [brian.models.db :refer :all])
+  (:use [fogus.datalog.bacwn :only (q)]))</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(defn books []
+  &quot;Query the database for a list of books.&quot;
    (str db))</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(defroutes api-routes
   (GET &quot;/api/books&quot; [] (books)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.routes.home" name="brian.routes.home"><h1 class="project-name">brian.routes.home</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">

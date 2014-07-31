@@ -19,6 +19,7 @@
     (relation :finish [:isbn :when])
     (index :finish :isbn)))
 
+; Connect relations using arbitrarily complex rules.
 (def rules
   (rules-set
     (<- (:attempt :author ?a :title ?t :when ?w)
@@ -28,17 +29,22 @@
         (:book :isbn ?id :author ?a :title ?t)
         (:finish :isbn ?id :when ?w))))
 
+; Non-parametrized query
 (def wp-1 (build-work-plan rules (?- :attempt :author ?a
                                      :title ?t :when ?q)))
 
-; (parse-tabular-data (env :raw-data) \tab)
-(defn get-tabular-data [path delim]
+(defn get-tabular-data
+  "Constructs a vector of maps from spreadsheet data
+   using the first row as keys."
+  [path delim]
   (let [tsv  (csv/parse-csv (slurp path) :delimiter delim)
         hdrs (first tsv)
         rows (rest tsv)]
     (mapv #(zipmap hdrs %) rows)))
 
-(defn filter-and-swap [d old-ks new-ks]
+(defn filter-and-swap
+  "Filter map by keys (old-ks) then swap old keys for new keys."
+  [d old-ks new-ks]
   (rename-keys (select-keys d old-ks)
                (zipmap old-ks new-ks)))
 
@@ -69,6 +75,9 @@
                        (parse-finishes raw))]
     (apply (partial add-tuples db-base) parsed)))
 
-(def books-read (q (?- :attempt :author ?a :title ?t :when ?w)
-                   db rules {}))
+(defn books-read
+  "Queries the database for books that have been read."
+  []
+  (q (?- :attempt :author ?a :title ?t :when ?w)
+     db rules {}))
 
