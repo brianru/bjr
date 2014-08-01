@@ -1,3 +1,11 @@
+;; # The App
+;;
+;; The application can be split into the following verticals:
+;;
+;; -  Public Website (`home-routes`)
+;; -  Public Data (`api-routes`)
+;; -  Private Website (`tbd`)
+;;
 (ns brian.handler
   (:require [compojure.core :refer [defroutes routes]]
             [ring.middleware.resource :refer [wrap-resource]]

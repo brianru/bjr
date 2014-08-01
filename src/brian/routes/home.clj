@@ -4,7 +4,10 @@
             [hiccup.core :refer :all]))
 
 
-(defn icon [url img]
+(defn icon
+  "Construct markup for icon links.
+   TODO: make data uris for images"
+  [url img]
   (let [x [:a {:href url}
            [:img.icon {:src img}]]]
     x))
@@ -14,7 +17,27 @@
 (def linkedin-icon (icon "https://www.linkedin.com/in/brianjrubinton"
                          "/img/linkedin.png"))
 
-(defn home []
+(defn home
+  "# Homepage
+
+
+   ## Top - first impression
+   
+   Full (vertical) page with an opaque background image (that I took).
+   Name in the middle. Most important links directly beneath.
+  
+
+   ## Middle - depth - data
+
+   -  reading habits (shelfari)
+   -  fitness (fitbit)
+   -  programming (github)
+  
+
+   ## Bottom - tbd
+  
+   -  contact information?"
+  []
   (layout/common
     [:div.top-banner
      [:div [:ul
@@ -22,13 +45,6 @@
             [:li [:span.my-name "Brian James Rubinton"]]
             [:li github-icon twitter-icon linkedin-icon]]]]
     ))
-
-; top: big, full screen-height image with intro in the middle
-
-; middle: what i want to do, what i'm doing, and what i've done
-;         in that order
-
-; bottom: contact information
 
 (defroutes home-routes
   (GET "/" [] (home)))

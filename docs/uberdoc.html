@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head><meta charset="utf-8" content="text/html" http-equiv="Content-Type" /><meta content="FIXME: write description" name="description" /><style type="text/css">/**
+<html><head><meta charset="utf-8" content="text/html" http-equiv="Content-Type" /><meta content="a web app for data heavy personal websites" name="description" /><style type="text/css">/**
  * SyntaxHighlighter
  * http://alexgorbatchev.com/SyntaxHighlighter
  *
@@ -3028,8 +3028,16 @@ net.brehaut.ClojureTools = (function (SH) {
     build_tree: build_tree
   };
 })(SyntaxHighlighter);
-</script><title>brian -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">brian</h1><h2 class="project-version">0.1.0-SNAPSHOT</h2><br /><p>FIXME: write description</p>
-</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.6.0</td></tr><tr><td class="dep-name">compojure</td><td class="dotted"><hr /></td><td class="dep-version">1.1.6</td></tr><tr><td class="dep-name">hiccup</td><td class="dotted"><hr /></td><td class="dep-version">1.0.5</td></tr><tr><td class="dep-name">ring-server</td><td class="dotted"><hr /></td><td class="dep-version">0.3.1</td></tr><tr><td class="dep-name">fogus/bacwn</td><td class="dotted"><hr /></td><td class="dep-version">0.4.0</td></tr><tr><td class="dep-name">clojure-csv/clojure-csv</td><td class="dotted"><hr /></td><td class="dep-version">2.0.1</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#brian.handler">brian.handler</a></li><li><a href="#brian.models.db">brian.models.db</a></li><li><a href="#brian.models.schema">brian.models.schema</a></li><li><a href="#brian.repl">brian.repl</a></li><li><a href="#brian.routes.api">brian.routes.api</a></li><li><a href="#brian.routes.home">brian.routes.home</a></li><li><a href="#brian.views.layout">brian.views.layout</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.handler" name="brian.handler"><h1 class="project-name">brian.handler</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+</script><title>brian -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">brian</h1><h2 class="project-version">0.1.3</h2><br /><p>a web app for data heavy personal websites</p>
+</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.6.0</td></tr><tr><td class="dep-name">compojure</td><td class="dotted"><hr /></td><td class="dep-version">1.1.6</td></tr><tr><td class="dep-name">hiccup</td><td class="dotted"><hr /></td><td class="dep-version">1.0.5</td></tr><tr><td class="dep-name">ring-server</td><td class="dotted"><hr /></td><td class="dep-version">0.3.1</td></tr><tr><td class="dep-name">fogus/bacwn</td><td class="dotted"><hr /></td><td class="dep-version">0.4.0</td></tr><tr><td class="dep-name">clojure-csv/clojure-csv</td><td class="dotted"><hr /></td><td class="dep-version">2.0.1</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#brian.handler">brian.handler</a></li><li><a href="#brian.models.db">brian.models.db</a></li><li><a href="#brian.repl">brian.repl</a></li><li><a href="#brian.routes.api">brian.routes.api</a></li><li><a href="#brian.routes.home">brian.routes.home</a></li><li><a href="#brian.views.layout">brian.views.layout</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.handler" name="brian.handler"><h1 class="project-name">brian.handler</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><h1>The App</h1>
+
+<p>The application can be split into the following verticals:</p>
+
+<ul>
+<li>Public Website (<code>home-routes</code>)</li>
+<li>Public Data (<code>api-routes</code>)</li>
+<li>Private Website (<code>tbd</code>)</li>
+</ul>
 </td><td class="codes"><pre class="brush: clojure">(ns brian.handler
   (:require [compojure.core :refer [defroutes routes]]
             [ring.middleware.resource :refer [wrap-resource]]
@@ -3049,7 +3057,20 @@ net.brehaut.ClojureTools = (function (SH) {
 </td><td class="codes"><pre class="brush: clojure">(def app
   (-&gt; (routes home-routes api-routes app-routes)
       (handler/site)
-      (wrap-base-url)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.models.db" name="brian.models.db"><h1 class="project-name">brian.models.db</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+      (wrap-base-url)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.models.db" name="brian.models.db"><h1 class="project-name">brian.models.db</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><h1>The Data</h1>
+
+<p>Initialize, load and save the in-memory database.</p>
+
+<h1>Why datalog?</h1>
+
+<ul>
+<li>I want to learn datalog.</li>
+<li>I want to learn datomic, which uses datalog.</li>
+<li>Queries are data.</li>
+<li>Bacwn is a small datalog implementation that I can squeeze
+into my head.</li>
+<li>I know SQL. I don't know Datalog.</li>
+</ul>
 </td><td class="codes"><pre class="brush: clojure">(ns brian.models.db
   (:require [clojure-csv.core :as csv])
   (:use [clojure.string :only (blank?)]
@@ -3075,19 +3096,22 @@ net.brehaut.ClojureTools = (function (SH) {
         (:book :isbn ?id :author ?a :title ?t)
         (:finish :isbn ?id :when ?w))))</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(def wp-1 (build-work-plan rules (?- :attempt :author ?a
-                                     :title ?t :when ?q)))</pre></td></tr><tr><td class="docs"><p>Constructs a vector of maps from spreadsheet data
+                                     :title ?t :when ?q)))</pre></td></tr><tr><td class="docs"><p>Given spreadsheet data, construct a vector of maps
    using the first row as keys.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn get-tabular-data
   [path delim]
   (let [tsv  (csv/parse-csv (slurp path) :delimiter delim)
         hdrs (first tsv)
         rows (rest tsv)]
-    (mapv #(zipmap hdrs %) rows)))</pre></td></tr><tr><td class="docs"><p>Filter map by keys (old-ks) then swap old keys for new keys.</p>
+    (mapv #(zipmap hdrs %) rows)))</pre></td></tr><tr><td class="docs"><p>Filter map by keys (<code>old-ks</code>) then swap the old keys (<code>old-ks</code>)
+   for the new keys (<code>new-ks</code>).</p>
 </td><td class="codes"><pre class="brush: clojure">(defn filter-and-swap
   [d old-ks new-ks]
   (rename-keys (select-keys d old-ks)
                (zipmap old-ks new-ks)))</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(defn parse-entries [relation d old-ks new-ks]
+  &quot;TODO iterate through the entries once
+   TODO use a map instead of the two vectors&quot;
   (let [massaged (mapv #(filter-and-swap % old-ks new-ks) d)
         filtered (filter #(not-any? blank? (vals %)) massaged)]
     (mapv #(flatten (cons relation %)) filtered)))</pre></td></tr><tr><td class="docs">
@@ -3108,28 +3132,27 @@ net.brehaut.ClojureTools = (function (SH) {
         parsed (concat (parse-books raw)
                        (parse-starts raw)
                        (parse-finishes raw))]
-    (apply (partial add-tuples db-base) parsed)))</pre></td></tr><tr><td class="docs"><p>Queries the database for books that have been read.</p>
+    (apply (partial add-tuples db-base) parsed)))</pre></td></tr><tr><td class="docs"><p>Query the database for books that have been read.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn books-read
   []
   (q (?- :attempt :author ?a :title ?t :when ?w)
-     db rules {}))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.models.schema" name="brian.models.schema"><h1 class="project-name">brian.models.schema</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(ns brian.models.schema
-  (:require [brian.models.db :refer :all]))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.repl" name="brian.repl"><h1 class="project-name">brian.repl</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+     db rules {}))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.repl" name="brian.repl"><h1 class="project-name">brian.repl</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(ns brian.repl
   (:use brian.handler
         ring.server.standalone
         [ring.middleware file-info file]))</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(defonce server (atom nil))</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(defn get-handler []
-  ;; #'app expands to (var app) so that when we reload our code,
-  ;; the server is forced to re-resolve the symbol in the var
-  ;; rather than having its own copy. When the root binding
-  ;; changes, the server picks it up without having to restart.
+</td><td class="codes"><pre class="brush: clojure">(defonce server (atom nil))</pre></td></tr><tr><td class="docs"><p><code>#'app</code> expands to <code>(var app)</code> so that when we reload our code,
+   the server is forced to re-resolve the symbol in the var
+   rather than having its own copy. When the root binding
+   changes, the server picks it up without having to restart.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn get-handler
+  []
   (-&gt; #'app
-    ; Makes static assets in $PROJECT_DIR/resources/public/ available.
+    ; Makes static assets in $PROJECT_DIR/resources/public/ available. 
     (wrap-file &quot;resources&quot;)
-    ; Content-Type, Content-Length, and Last Modified headers for files in body
-    (wrap-file-info)))</pre></td></tr><tr><td class="docs"><p>used for starting the server in development mode from REPL</p>
+    ; Content-Type, Content-Length, and Last Modified headers
+    ; for files in body
+    (wrap-file-info)))</pre></td></tr><tr><td class="docs"><p>Start the server in development mode from the REPL.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn start-server
   [&amp; [port]]
   (let [port (if port (Integer/parseInt port) 8080)]
@@ -3140,7 +3163,7 @@ net.brehaut.ClojureTools = (function (SH) {
                     :auto-reload? true
                     :destroy destroy
                     :join true}))
-    (println (str &quot;You can view the site at http://localhost:&quot; port))))</pre></td></tr><tr><td class="docs"><p>stop the server from the REPL</p>
+    (println (str &quot;You can view the site at http://localhost:&quot; port))))</pre></td></tr><tr><td class="docs"><p>Stop the server from the REPL.</p>
 </td><td class="codes"><pre class="brush: clojure">(defn stop-server
   []
   (.stop @server)
@@ -3157,16 +3180,35 @@ net.brehaut.ClojureTools = (function (SH) {
 </td><td class="codes"><pre class="brush: clojure">(ns brian.routes.home
   (:require [compojure.core :refer :all]
             [brian.views.layout :as layout]
-            [hiccup.core :refer :all]))</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(defn icon [url img]
+            [hiccup.core :refer :all]))</pre></td></tr><tr><td class="docs"><p>Construct markup for icon links.
+   TODO: make data uris for images</p>
+</td><td class="codes"><pre class="brush: clojure">(defn icon
+  [url img]
   (let [x [:a {:href url}
            [:img.icon {:src img}]]]
     x))</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(def twitter-icon  (icon &quot;//twitter.com/brianru&quot; &quot;/img/twitter.png&quot;))
 (def github-icon   (icon &quot;//github.com/brianru&quot; &quot;/img/github.png&quot;))
 (def linkedin-icon (icon &quot;https://www.linkedin.com/in/brianjrubinton&quot;
-                         &quot;/img/linkedin.png&quot;))</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(defn home []
+                         &quot;/img/linkedin.png&quot;))</pre></td></tr><tr><td class="docs"><h1>Homepage</h1>
+
+<p>   ## Top - first impression</p>
+
+<p>   Full (vertical) page with an opaque background image (that I took).
+   Name in the middle. Most important links directly beneath.</p>
+
+<p>   ## Middle - depth - data</p>
+
+<ul>
+<li>reading habits (shelfari)</li>
+<li>fitness (fitbit)</li>
+<li><p>programming (github)</p>
+
+<h2>Bottom - tbd</h2></li>
+<li><p>contact information?</p></li>
+</ul>
+</td><td class="codes"><pre class="brush: clojure">(defn home
+  []
   (layout/common
     [:div.top-banner
      [:div [:ul
