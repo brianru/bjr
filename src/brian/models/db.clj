@@ -11,13 +11,14 @@
 ;; -  I know SQL. I don't know Datalog.
 ;;
 (ns brian.models.db
-  (:require [clojure-csv.core :as csv])
-  (:use [clojure.string :only (blank?)]
-        [clojure.set :only (rename-keys)]
-        [fogus.datalog.bacwn :only (q build-work-plan run-work-plan)]
-        [fogus.datalog.bacwn.macros :only (<- ?- make-database)]
-        [fogus.datalog.bacwn.impl.rules :only (rules-set)]
-        [fogus.datalog.bacwn.impl.database :only (add-tuples)]))
+  (:require [clojure-csv.core :as csv]
+            [clojure.string :refer [blank?]]
+            [clojure.set :refer [rename-keys]]
+            [fogus.datalog.bacwn :refer
+             [q build-work-plan run-work-plan]]
+            [fogus.datalog.bacwn.macros :refer [<- ?- make-database]]
+            [fogus.datalog.bacwn.impl.rules :refer [rules-set]]
+            [fogus.datalog.bacwn.impl.database :refer [add-tuples]]))
 
 
 (def db-base

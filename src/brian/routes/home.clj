@@ -1,3 +1,4 @@
+;; # The Public Website
 (ns brian.routes.home
   (:require [compojure.core :refer :all]
             [brian.views.layout :as layout]

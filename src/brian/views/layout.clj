@@ -1,7 +1,13 @@
 (ns brian.views.layout
   (:require [hiccup.page :refer [html5 include-css include-js]]))
 
-(defn common [& body]
+(defn common
+  "Template for responsive webpages.
+  
+   ## Includes:
+   -  JQuery
+   -  Bootstrap"
+  [& body]
   (html5
     [:head
      [:meta {:name "viewport"
@@ -9,6 +15,7 @@
      [:title "BJR"]
      (include-css "/css/screen.css"
                   "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
+     ;; TODO D3.js
      (include-js "//code.jquery.com/jquery-1.11.0.min.js"
                  "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")]
     [:body body]))

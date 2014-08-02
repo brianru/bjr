@@ -3,13 +3,14 @@
 ;; The application can be split into the following verticals:
 ;;
 ;; -  Public Website (`home-routes`)
-;; -  Public Data (`api-routes`)
+;; -  Public API (`api-routes`)
 ;; -  Private Website (`tbd`)
 ;;
 (ns brian.handler
   (:require [compojure.core :refer [defroutes routes]]
             [ring.middleware.resource :refer [wrap-resource]]
             [ring.middleware.file-info :refer [wrap-file-info]]
+            [ring.middleware.json :refer [wrap-json-response]]
             [hiccup.middleware :refer [wrap-base-url]]
             [compojure.handler :as handler]
             [compojure.route :as route]
@@ -29,4 +30,5 @@
 (def app
   (-> (routes home-routes api-routes app-routes)
       (handler/site)
-      (wrap-base-url)))
+      (wrap-base-url)
+      (wrap-json-response)))

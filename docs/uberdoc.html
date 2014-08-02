@@ -3029,19 +3029,20 @@ net.brehaut.ClojureTools = (function (SH) {
   };
 })(SyntaxHighlighter);
 </script><title>brian -- Marginalia</title></head><body><table><tr><td class="docs"><div class="header"><h1 class="project-name">brian</h1><h2 class="project-version">0.1.3</h2><br /><p>a web app for data heavy personal websites</p>
-</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.6.0</td></tr><tr><td class="dep-name">compojure</td><td class="dotted"><hr /></td><td class="dep-version">1.1.6</td></tr><tr><td class="dep-name">hiccup</td><td class="dotted"><hr /></td><td class="dep-version">1.0.5</td></tr><tr><td class="dep-name">ring-server</td><td class="dotted"><hr /></td><td class="dep-version">0.3.1</td></tr><tr><td class="dep-name">fogus/bacwn</td><td class="dotted"><hr /></td><td class="dep-version">0.4.0</td></tr><tr><td class="dep-name">clojure-csv/clojure-csv</td><td class="dotted"><hr /></td><td class="dep-version">2.0.1</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#brian.handler">brian.handler</a></li><li><a href="#brian.models.db">brian.models.db</a></li><li><a href="#brian.repl">brian.repl</a></li><li><a href="#brian.routes.api">brian.routes.api</a></li><li><a href="#brian.routes.home">brian.routes.home</a></li><li><a href="#brian.views.layout">brian.views.layout</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.handler" name="brian.handler"><h1 class="project-name">brian.handler</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><h1>The App</h1>
+</div><div class="dependencies"><h3>dependencies</h3><table><tr><td class="dep-name">org.clojure/clojure</td><td class="dotted"><hr /></td><td class="dep-version">1.6.0</td></tr><tr><td class="dep-name">compojure</td><td class="dotted"><hr /></td><td class="dep-version">1.1.6</td></tr><tr><td class="dep-name">hiccup</td><td class="dotted"><hr /></td><td class="dep-version">1.0.5</td></tr><tr><td class="dep-name">ring-server</td><td class="dotted"><hr /></td><td class="dep-version">0.3.1</td></tr><tr><td class="dep-name">ring/ring-json</td><td class="dotted"><hr /></td><td class="dep-version">0.3.1</td></tr><tr><td class="dep-name">fogus/bacwn</td><td class="dotted"><hr /></td><td class="dep-version">0.4.0</td></tr><tr><td class="dep-name">clj-time</td><td class="dotted"><hr /></td><td class="dep-version">0.8.0</td></tr><tr><td class="dep-name">clojure-csv/clojure-csv</td><td class="dotted"><hr /></td><td class="dep-version">2.0.1</td></tr></table></div></td><td class="codes" style="text-align: center; vertical-align: middle;color: #666;padding-right:20px"><br /><br /><br />(this space intentionally left almost blank)</td></tr><tr><td class="docs"><div class="toc"><a name="toc"><h3>namespaces</h3></a><ul><li><a href="#brian.handler">brian.handler</a></li><li><a href="#brian.models.db">brian.models.db</a></li><li><a href="#brian.repl">brian.repl</a></li><li><a href="#brian.routes.api">brian.routes.api</a></li><li><a href="#brian.routes.home">brian.routes.home</a></li><li><a href="#brian.views.layout">brian.views.layout</a></li></ul></div></td><td class="codes">&nbsp;</td></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.handler" name="brian.handler"><h1 class="project-name">brian.handler</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><h1>The App</h1>
 
 <p>The application can be split into the following verticals:</p>
 
 <ul>
 <li>Public Website (<code>home-routes</code>)</li>
-<li>Public Data (<code>api-routes</code>)</li>
+<li>Public API (<code>api-routes</code>)</li>
 <li>Private Website (<code>tbd</code>)</li>
 </ul>
 </td><td class="codes"><pre class="brush: clojure">(ns brian.handler
   (:require [compojure.core :refer [defroutes routes]]
             [ring.middleware.resource :refer [wrap-resource]]
             [ring.middleware.file-info :refer [wrap-file-info]]
+            [ring.middleware.json :refer [wrap-json-response]]
             [hiccup.middleware :refer [wrap-base-url]]
             [compojure.handler :as handler]
             [compojure.route :as route]
@@ -3057,7 +3058,8 @@ net.brehaut.ClojureTools = (function (SH) {
 </td><td class="codes"><pre class="brush: clojure">(def app
   (-&gt; (routes home-routes api-routes app-routes)
       (handler/site)
-      (wrap-base-url)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.models.db" name="brian.models.db"><h1 class="project-name">brian.models.db</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><h1>The Data</h1>
+      (wrap-base-url)
+      (wrap-json-response)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.models.db" name="brian.models.db"><h1 class="project-name">brian.models.db</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><h1>The Data</h1>
 
 <p>Initialize, load and save the in-memory database.</p>
 
@@ -3072,13 +3074,14 @@ into my head.</li>
 <li>I know SQL. I don't know Datalog.</li>
 </ul>
 </td><td class="codes"><pre class="brush: clojure">(ns brian.models.db
-  (:require [clojure-csv.core :as csv])
-  (:use [clojure.string :only (blank?)]
-        [clojure.set :only (rename-keys)]
-        [fogus.datalog.bacwn :only (q build-work-plan run-work-plan)]
-        [fogus.datalog.bacwn.macros :only (&lt;- ?- make-database)]
-        [fogus.datalog.bacwn.impl.rules :only (rules-set)]
-        [fogus.datalog.bacwn.impl.database :only (add-tuples)]))</pre></td></tr><tr><td class="docs">
+  (:require [clojure-csv.core :as csv]
+            [clojure.string :refer [blank?]]
+            [clojure.set :refer [rename-keys]]
+            [fogus.datalog.bacwn :refer
+             [q build-work-plan run-work-plan]]
+            [fogus.datalog.bacwn.macros :refer [&lt;- ?- make-database]]
+            [fogus.datalog.bacwn.impl.rules :refer [rules-set]]
+            [fogus.datalog.bacwn.impl.database :refer [add-tuples]]))</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(def db-base
   (make-database
     (relation :book [:isbn :author :title])
@@ -3167,16 +3170,37 @@ into my head.</li>
 </td><td class="codes"><pre class="brush: clojure">(defn stop-server
   []
   (.stop @server)
-  (reset! server nil))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.routes.api" name="brian.routes.api"><h1 class="project-name">brian.routes.api</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+  (reset! server nil))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.routes.api" name="brian.routes.api"><h1 class="project-name">brian.routes.api</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><h1>The API</h1>
 </td><td class="codes"><pre class="brush: clojure">(ns brian.routes.api
   (:require [compojure.core :refer :all]
-            [brian.models.db :refer :all])
-  (:use [fogus.datalog.bacwn :only (q)]))</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(defn books []
-  &quot;Query the database for a list of books.&quot;
-   (str db))</pre></td></tr><tr><td class="docs">
+            [clj-time.core :as t]
+            [clj-time.format :as f]
+            [brian.models.db :refer [db rules]]
+            [fogus.datalog.bacwn :refer [q]]
+            [fogus.datalog.bacwn.macros :refer [?-]]))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn parse-year
+  ([x]
+   (parse-year &quot;MM/dd/yyyy&quot; x))
+  ([fmt x]
+   (t/year (f/parse (f/formatter fmt) x))))</pre></td></tr><tr><td class="docs">
+</td><td class="codes"><pre class="brush: clojure">(defn books-read []
+  (q (?- :success :author ?a :title ?t :when ?w) db rules {}))</pre></td></tr><tr><td class="docs"><p>Partition books by year read.</p>
+</td><td class="codes"><pre class="brush: clojure">(defn books-read-by-year
+  []
+  (let [res (books-read)
+        parts (group-by (comp parse-year :when) res)]
+    (map #(hash-map (first %) (count (second %))) parts)))</pre></td></tr><tr><td class="docs"><p>TODO: datetime parsing</p>
+</td><td class="codes"><pre class="brush: clojure">(comment
+(defn books-in-last
+  [t]
+  (filter #(&gt; ((comp parse-year :when) %) t) (books-read))))</pre></td></tr><tr><td class="docs"><p>TODO: datetime parsing</p>
+</td><td class="codes"><pre class="brush: clojure">(comment
+(defn recent-books
+  [n]
+  (take n (sort-by :when (complement compare) (books-read)))))</pre></td></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(defroutes api-routes
-  (GET &quot;/api/books&quot; [] (books)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.routes.home" name="brian.routes.home"><h1 class="project-name">brian.routes.home</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
+  (GET &quot;/api/books-read&quot; [] (books-read))
+  (GET &quot;/api/books-by-year&quot; [] (books-read-by-year)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.routes.home" name="brian.routes.home"><h1 class="project-name">brian.routes.home</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs"><h1>The Public Website</h1>
 </td><td class="codes"><pre class="brush: clojure">(ns brian.routes.home
   (:require [compojure.core :refer :all]
             [brian.views.layout :as layout]
@@ -3218,8 +3242,13 @@ into my head.</li>
 </td><td class="codes"><pre class="brush: clojure">(defroutes home-routes
   (GET &quot;/&quot; [] (home)))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr><tr><td class="docs"><div class="docs-header"><a class="anchor" href="#brian.views.layout" name="brian.views.layout"><h1 class="project-name">brian.views.layout</h1><a class="toc-link" href="#toc">toc</a></a></div></td><td class="codes" /></tr><tr><td class="docs">
 </td><td class="codes"><pre class="brush: clojure">(ns brian.views.layout
-  (:require [hiccup.page :refer [html5 include-css include-js]]))</pre></td></tr><tr><td class="docs">
-</td><td class="codes"><pre class="brush: clojure">(defn common [&amp; body]
+  (:require [hiccup.page :refer [html5 include-css include-js]]))</pre></td></tr><tr><td class="docs"><p>Template for responsive webpages.</p>
+
+<p>   ## Includes:
+   -  JQuery
+   -  Bootstrap</p>
+</td><td class="codes"><pre class="brush: clojure">(defn common
+  [&amp; body]
   (html5
     [:head
      [:meta {:name &quot;viewport&quot;
@@ -3227,6 +3256,7 @@ into my head.</li>
      [:title &quot;BJR&quot;]
      (include-css &quot;/css/screen.css&quot;
                   &quot;//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css&quot;)
+     ;; TODO D3.js
      (include-js &quot;//code.jquery.com/jquery-1.11.0.min.js&quot;
                  &quot;//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js&quot;)]
     [:body body]))</pre></td></tr><tr><td class="spacer docs">&nbsp;</td><td class="codes" /></tr></table><div class="footer">Generated by <a href="https://github.com/fogus/marginalia">Marginalia</a>.&nbsp;&nbsp;Syntax highlighting provided by Alex Gorbatchev's <a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter</a></div><script type="text/javascript">SyntaxHighlighter.defaults['gutter'] = false;
