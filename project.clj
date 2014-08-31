@@ -2,10 +2,12 @@
   :description "a web app for data heavy personal websites"
   :url "http://www.brianjamesrubinton.com"
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [compojure "1.1.6"]
+                 [compojure "1.1.8"]
                  [hiccup "1.0.5"]
                  [ring-server "0.3.1"]
                  [ring/ring-json "0.3.1"]
+                 [clj-http "1.0.0"]
+                 [clj-oauth "1.5.1"]
                  [fogus/bacwn "0.4.0"]
                  [clj-time "0.8.0"]
                  [clojure-csv/clojure-csv "2.0.1"]]

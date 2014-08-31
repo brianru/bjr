@@ -50,6 +50,12 @@ ul {
     height: 32px;
     width:  32px;
 }
+
+.dashboard {
+    background-color: #F1F1F1;
+}
+
+/* D3 */
 .bar {
   fill: steelblue;
 }

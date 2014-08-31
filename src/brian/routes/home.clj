@@ -45,6 +45,11 @@
             ; use initial when viewed from mobile phone
             [:li [:span.my-name "Brian James Rubinton"]]
             [:li github-icon twitter-icon linkedin-icon]]]]
+    [:div.dashboard.container-fluid
+     [:div.row ;; d3 populates these with svgs
+      [:div.col-md-4]
+      [:div.col-md-4 "dude"] ;; http://www.githubarchive.org/
+      [:div.col-md-4 "apple"]]] ;; fitbit
     ))
 
 (defroutes home-routes
