@@ -47,9 +47,9 @@
             [:li github-icon twitter-icon linkedin-icon]]]]
     [:div.dashboard.container-fluid
      [:div.row ;; d3 populates these with svgs
-      [:div.col-md-4]
-      [:div.col-md-4 "dude"] ;; http://www.githubarchive.org/
-      [:div.col-md-4 "apple"]]] ;; fitbit
+      [:div.col-md-4.text-center.github]
+      [:div.col-md-4.text-center.reading] ;; http://www.githubarchive.org/
+      [:div.col-md-4.text-center]]] ;; fitbit
     ))
 
 (defroutes home-routes

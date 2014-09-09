@@ -45,15 +45,19 @@
                  ["ISBN" "DateRead"]
                  [:isbn :when]))
 
-(def db
-  (let [raw    (get-tabular-data "resources/shelfari_data.tsv" \tab)
-        parsed (concat (parse-books raw)
-                       (parse-starts raw)
-                       (parse-finishes raw))]
-    (apply (partial add-tuples db-base) parsed)))
-
 (defn save-db [db]
   (spit db-path db))
 
 (defn load-db []
   (read-string (slurp db-path)))
+
+(def db
+  (if (.exists (clojure.java.io/as-file db-path))
+    (load-db)
+    (let [raw    (get-tabular-data "resources/shelfari_data.tsv" \tab)
+          parsed (concat (parse-books raw)
+                         (parse-starts raw)
+                         (parse-finishes raw))
+          res (apply (partial add-tuples db-base) parsed)]
+      (do (save-db res)
+          res))))
