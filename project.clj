@@ -13,6 +13,7 @@
                  [clojure-csv/clojure-csv "2.0.1"]]
   :plugins [[lein-ring "0.8.10"]
             [lein-marginalia "0.7.1"]]
+  :java-agents [[com.newrelic.agent.java/newrelic-agent "2.19.0"]]
   :min-lein-version "2.0.0"
   :ring {:handler brian.handler/app
          :init brian.handler/init
