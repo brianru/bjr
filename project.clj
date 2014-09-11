@@ -6,6 +6,7 @@
                  [hiccup "1.0.5"]
                  [ring-server "0.3.1"]
                  [ring/ring-json "0.3.1"]
+                 [org.clojure/data.json "0.2.5"]
                  [clj-http "1.0.0"]
                  [clj-oauth "1.5.1"]
                  [fogus/bacwn "0.4.0"]

@@ -1,8 +1,7 @@
 (ns brian.models.schema
   (:require [fogus.datalog.bacwn :refer [q build-work-plan run-work-plan]]
             [fogus.datalog.bacwn.macros :refer [<- ?- make-database]]
-            [fogus.datalog.bacwn.impl.rules :refer [rules-set]]
-            ))
+            [fogus.datalog.bacwn.impl.rules :refer [rules-set]]))
 
 (def db-base
   (make-database
