@@ -8,14 +8,20 @@
   [data attr-map]
   (rename-keys (select-keys data (keys attr-map)) attr-map))
 
+(defn bad? [x]
+  (cond (string? x) (blank? x)
+        (number? x) (nil? x)
+        :else       true))
+
 (defn parse-entries
   "TODO iterate through the entries once
    TODO use a map instead of the two vectors"
   [relation data attr-map]
   (let [massaged (mapv #(filter-and-swap % attr-map) data)
-        filtered (filter #(not-any? blank? (vals %)) massaged)]
+        filtered (filter #(not-any? bad? (vals %)) massaged)]
     (mapv #(flatten (cons relation %)) filtered)))
 
 (defn mk-parser [[kind attr-map]]
+  (println kind attr-map)
   (fn [data] (parse-entries kind data attr-map)))
 
