@@ -24,3 +24,12 @@
 (defn finish-books
   "Take any number of book-finish tuples"
   [])
+
+(defn languages
+  "List programming languages by number of commits."
+  []
+  nil)
+(defn repositories
+  "List repositories I contribute to the most."
+  []
+  nil)

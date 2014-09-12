@@ -13,3 +13,4 @@ pom.xml
 .nrepl-port
 profiles.clj
 *.db
+.DS_Store

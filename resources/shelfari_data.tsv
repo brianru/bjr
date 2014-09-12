@@ -15,7 +15,7 @@ EditionId	ASIN	ISBN	Title	Author	Edition Author	Binding	PublicationYear	Rating	T
 11309	"0060934913"	"0060934913"	Kitchen Confidential	Bourdain, Anthony	Anthony Bourdain	Paperback	2001	4						2/7/2011						1/29/2011		False	False	False	True	False	False	
 11491	"1880685221"	"1880685221"	Hold 'em Poker For Advanced Players	Sklansky, David; Mason Malmuth	David Sklansky, Mason Malmuth	Paperback	1999	3						1/1/2009						2/5/2009		False	False	False	True	False	False	
 11497	"1416903674"	"1416903674"	Phil Gordon's Little Green Book	Gordon, Phil	Phil Gordon	Hardcover	2005	4						1/1/2008						2/5/2009		False	False	False	True	False	False	
-11528	"0553585975"	"055299670X"	The Wealth of Nations	Smith, Adam	Adam Smith	Mass Market Paperback	2003	4						2/1/2010						8/22/2008		False	False	False	True	False	False	
+11528	"0553585975"	"0553585975"	The Wealth of Nations	Smith, Adam	Adam Smith	Mass Market Paperback	2003	4						2/1/2010						8/22/2008		False	False	False	True	False	False	
 11857	"0449300021"	"0449300021"	Les Misérables	Hugo, Victor	Victor Hugo	Mass Market Paperback	1982	5						5/31/2013						3/3/2013		False	False	False	True	False	False	
 11968	"0385333846"	"0385333846"	Slaughterhouse-Five	Vonnegut, Kurt, Jr.	Kurt Vonnegut	Paperback	1999	5						1/1/2007						7/14/2009		True	False	False	True	False	False	
 11970	"0679731725"	"0679731725"	The Remains of the Day	Ishiguro, Kazuo	Kazuo Ishiguro	Paperback	1990	5						11/11/2012						11/11/2012		True	False	False	True	False	False	
@@ -30,7 +30,7 @@ EditionId	ASIN	ISBN	Title	Author	Edition Author	Binding	PublicationYear	Rating	T
 16278	"0787951986"	"0787951986"	Emotional Intelligence at Work	Weisinger, Hendrie	Hendrie Weisinger Ph.D.	Paperback	2000													2/1/2011		False	False	False	False	False	False	
 16375	"0743217373"	"0743217373"	The Great Bridge	McCullough, David G.	David McCullough	Hardcover	2001	5						4/5/2014						3/30/2014		False	False	False	True	False	False	
 16527	"0140447571"	"0140447571"	The Communist Manifesto	Marx, Karl; Friedrich Engels	Karl Marx, Friedrich Engels	Paperback	2002	3						1/1/2008						8/22/2008		False	False	False	True	False	False	
-16626	"0811200124"	"0811200124"	Labyrinths	Borges, Jorge Luis	Jorge Luis Borges	Paperback	1988	4						8/19/2012						8/19/2012		False	False	False	True	False	False	
+16626	"0811200124"	"0811200124"	Labyrinths	Borges, Jorge Luis	Jorge Luis Borges	Paperback	1964	4						8/19/2012						8/19/2012		False	False	False	True	False	False	
 17410	"0393324869"	"0393324869"	Naked Economics	Wheelan, Charles J.	Charles Wheelan	Paperback	2003	4						8/1/2007						12/28/2011		False	False	False	True	True	False	
 18518	"014200068X"	"014200068X"	Cannery Row	Steinbeck, John	John Steinbeck	Paperback	2002													2/5/2009		False	True	False	False	False	False	
 18928	"0192545051"	"0192545051"	Oliver Twist	Dickens, Charles	Charles Dickens	Hardcover	1987													12/27/2009		False	False	False	False	False	False	
@@ -44,6 +44,7 @@ EditionId	ASIN	ISBN	Title	Author	Edition Author	Binding	PublicationYear	Rating	T
 26219	"0385334206"	"0385334206"	Breakfast of Champions	Vonnegut, Kurt, Jr.	Kurt Vonnegut	Paperback	1999	3						1/1/2007						7/14/2009		False	False	False	True	False	False	
 26224	"0141301066"	"0141301066"	Matilda	Dahl, Roald	Roald Dahl	Paperback	1998	5						4/15/2014						4/16/2014		True	False	False	True	False	False	
 27448	"067973371X"	"067973371X"	Means of Ascent	Caro, Robert A.	Robert A. Caro	Paperback	1991	5						5/28/2014						5/11/2014		False	False	False	True	False	False	
+27450	"0394720954"	"0394720954"	Master of the Senate	Caro, Robert A.	Robert A. Caro	Paperback	2003	5												8/31/2014		False	False	False	False	False	True	
 27451	"0679729453"	"0679729453"	The Path to Power	Caro, Robert A.	Robert A. Caro	Paperback	1990	5						5/11/2014						4/12/2014		True	False	False	True	False	False	
 29224	"0451524934"	"0451524934"	1984	Orwell, George	George Orwell	Mass Market Paperback	1961	5						6/1/2009						8/22/2008		True	False	False	True	False	False	
 30094	"0451529553"	"0451529553"	Notes From Underground	Dostoyevsky, Fyodor	Fyodor Dostoyevsky	Mass Market Paperback	2004	3						1/1/2009						8/22/2008		False	False	False	True	False	False	
@@ -100,7 +101,7 @@ EditionId	ASIN	ISBN	Title	Author	Edition Author	Binding	PublicationYear	Rating	T
 108682	"0375708758"	"0375708758"	Hollywood	Vidal, Gore	Gore Vidal	Paperback	2000													11/6/2010		False	False	False	False	False	False	
 108718	"0375708731"	"0375708731"	Burr	Vidal, Gore	Gore Vidal	Paperback	2000	4						7/24/2009						7/14/2009		False	False	False	True	False	False	
 108742	"0375708723"	"0375708723"	1876	Vidal, Gore	Gore Vidal	Paperback	2000	3						1/1/2010						5/6/2010		False	False	False	True	False	False	
-108992	"1590593898"	"1590593898"	Joel on Software	Spolsky, Joel	Joel Spolsky	Paperback	2004	4												10/22/2013		False	True	False	False	False	False	
+108992	"1590593898"	"1590593898"	Joel on Software	Spolsky, Joel	Joel Spolsky	Paperback	2004	4						8/31/2014						10/22/2013		False	False	False	True	False	False	
 109322	"0521663504"	"0521663504"	Purely Functional Data Structures	Okasaki, Chris	Chris Okasaki	Paperback	1999	5												7/15/2013		True	True	False	False	False	False	
 132010	"0061198595"	"0061198595"	Phil Hellmuth Presents Read 'Em and Reap: A Career FBI Agent's Guide to Decoding Poker Tells	Karlins, Marvin; Phil Hellmuth; Joe Navarro	Joe Navarro, Marvin Karlins, Phil, Jr. Hellmuth	Paperback	2006	3						1/1/2009						2/5/2009		False	False	False	True	False	False	
 135665	"0875847595"	"0875847595"	Net Gain: Expanding Markets Through Virtual Communities	III, John Hagel	John Hagel III, Arthur G. Armstrong	Hardcover	1997													7/11/2011		False	False	False	False	False	False	
@@ -173,6 +174,7 @@ EditionId	ASIN	ISBN	Title	Author	Edition Author	Binding	PublicationYear	Rating	T
 28390741	"1416596585"	"1416596585"	In The Plex	Levy, Steven	Steven Levy	Hardcover	2011	5						6/28/2011						6/25/2011		True	False	False	True	False	False	
 35465078	"1593272839"	"1593272839"	Learn You a Haskell for Great Good!	Lipovača, Miran	Miran Lipovaca	Paperback	2011	4												1/14/2014		False	True	False	False	False	False	
 35470390	"1935785575"	"9781935785576"	If You Want To Write: A Book about Art, Independence and Spirit		Brenda Ueland	Paperback	2010	4						6/2/2011						6/11/2011		False	False	False	True	False	False	
+37437831	"0316056863"	"9780316056861"	Bossypants	Fey, Tina	Tina Fey	Hardcover	2011	3						8/18/2014						8/23/2014		False	False	False	True	False	False	
 37559580	"0374227349"	"0374227349"	The Origins of Political Order	Fukuyama, Francis	Francis Fukuyama	Hardcover	2011	4						3/22/2013						9/16/2012		False	False	False	True	False	False	
 37640246	"B0046ECF4U"	""	All the Devils Are Here	McLean, Bethany; Joe Nocera	Joe Nocera, Bethany McLean	Kindle Edition	2010	5						6/1/2011						11/4/2010		False	False	False	True	False	False	
 37658106	"0143119583"	"0143119583"	Cognitive Surplus	Shirky, Clay	Clay Shirky	Paperback	2011													7/6/2011		False	True	False	False	False	False	
@@ -181,6 +183,7 @@ EditionId	ASIN	ISBN	Title	Author	Edition Author	Binding	PublicationYear	Rating	T
 38099561	"B004K1F9KG"	""	Lifted (Kindle Single)		Evan Ratliff	Kindle Edition	2011													2/4/2011		False	False	False	False	True	False	
 38134139	"0470929820"	"0470929820"	Venture Deals	Feld, Brad; Jason Mendelson	Brad Feld, Jason Mendelson	Hardcover	2011													7/17/2011		False	False	False	False	False	False	
 38217502	"0300151098"	"0300151098"	A Great Leap Forward	Field, Alexander J.	Alexander J. Field Ph.D.	Hardcover	2012	5						6/20/2011						6/11/2011		False	False	False	True	False	False	
+38217940	"0307593312"	"0307593312"	1Q84	Murakami, Haruki	Haruki Murakami	Hardcover	2011	5						8/29/2014						8/23/2014		False	False	False	True	False	False	
 52689226	"B004PGO25O"	""	Do the Work	Pressfield, Steven	Steven Pressfield	Kindle Edition	2011													7/11/2011		False	True	False	False	False	False	
 57124345	"1451648537"	"1451648537"	Steve Jobs	Isaacson, Walter	Walter Isaacson	Hardcover	2011	5						11/1/2011						11/17/2011		True	False	False	True	False	False	
 57218147	"0547572484"	"0547572484"	The Man in the High Castle	Dick, Philip K.	Philip K. Dick	Paperback	2012	5						9/8/2012						9/3/2012		False	False	False	True	False	False	
@@ -204,7 +207,7 @@ EditionId	ASIN	ISBN	Title	Author	Edition Author	Binding	PublicationYear	Rating	T
 71727421	"1934356980"	"1934356980"	Practical Vim: Edit Text at the Speed of Thought	Neil, Drew	Drew Neil	Paperback	2012													10/19/2013		False	True	False	False	False	False	
 71854837	"1620100002"	"1620100002"	Scott Pilgrim Color Hardcover Volume 1: Precious Little Life	O'Malley, Bryan Lee	Bryan Lee O'Malley	Hardcover	2012	4						12/25/2013						12/26/2013		False	False	False	True	False	False	
 72198550	"B0080YHBR8"	""	Quality Python Development 		Frédéric Lepied	Kindle Edition	2012	3						3/20/2013						3/20/2013		False	False	False	True	False	False	
-74016628	"1607066017"	"1607066017"	Saga Volume 1 TP	Staples, Fiona; Brian K Vaughan	Brian K. Vaughan	Paperback	2012	5						5/17/2013						5/12/2013		False	False	False	True	False	False	
+74016628	"1607066017"	"1607066017"	Saga Volume 1 TP	Vaughan, Brian K; Fiona Staples	Brian K. Vaughan, Fiona K. Staples	Paperback	2012	5						5/17/2013						5/12/2013		False	False	False	True	False	False	
 74407727	"B008IGIKY6"	""	PostgreSQL: Up and Running, Ed: 1 		Regina O. Obe, Leo S. Hsu	Kindle Edition	2012													9/18/2013		False	True	False	False	False	False	
 75489725	"1938073207"	"1938073207"	McSweeney's Issue 43 (Mcsweeney's Quarterly Concern)			Paperback	2013	5						5/22/2013						5/21/2013		False	False	False	True	False	False	
 75565465	"1118443616"	"1118443616"	Venture Deals: Be Smarter Than Your Lawyer and Venture Capitalist		Brad Feld, Jason Mendelson	Hardcover	2012	4						10/19/2013						9/28/2013		False	False	False	True	False	False	
@@ -227,7 +230,7 @@ EditionId	ASIN	ISBN	Title	Author	Edition Author	Binding	PublicationYear	Rating	T
 87433731	"1938073452"	"1938073452"	McSweeney's Issue 44 (Mcsweeney's Quarterly Concern)			Hardcover	2013	5						11/12/2013						11/9/2013		False	False	False	True	False	False	
 87595504	"B00E5KB9RE"	""	Remembrance of Things Past	Proust, Marcel	Marcel Proust	Kindle Edition	2013	4												6/2/2014		False	False	False	False	False	False	
 87642959	"0385351399"	"0385351399"	The Circle	Eggers, Dave	Dave Eggers	Hardcover	2013	5						11/21/2013						11/21/2013		False	False	False	True	False	False	
-87764793	"1770461515"	"1770461515"	Showa 1938-1944: A History of Japan	Mizuki, Shigeru	Shigeru Mizuki	Paperback	2014													12/27/2013		False	False	False	False	False	True	
+87764793	"1770461515"	"1770461515"	Showa 1938-1944: A History of Japan	Mizuki, Shigeru	Shigeru Mizuki	Paperback	2014	5						8/23/2014						12/27/2013		False	False	False	True	False	False	
 87771170	"B009NGC5O6"	""	Concrete Mathematics: A Foundation for Computer Science (2nd Edition)		Graham / Knuth / Patashnik	Paperback	1994													9/13/2013		False	True	False	False	False	False	
 87854944	"1937785645"	"1937785645"	Web Development with Clojure: Build Bulletproof Web Apps with Less Code		Dmitri Sotnikov	Paperback	2014	3						7/13/2014						6/24/2014		False	False	False	True	False	False	
 87880131	"0062273205"	"0062273205"	The Hard Thing About Hard Things: Building a Business When There Are No Easy Answers		Ben Horowitz	Hardcover	2014	4						4/30/2014						3/17/2014		False	False	False	True	False	False	
@@ -235,4 +238,4 @@ EditionId	ASIN	ISBN	Title	Author	Edition Author	Binding	PublicationYear	Rating	T
 88154685	"1607069318"	"1607069318"	Saga Volume 3 TP	Vaughan, Brian K.; Fiona Staples	Brian K. Vaughan	Paperback	2014	5						3/28/2014						3/28/2014		False	False	False	True	False	False	
 88192883	"B00HB8PYD2"	""	Lapham`s Quarterly (Winter 2014,Comedy Issue)			Single Issue Magazine	2014	3												1/26/2014		False	True	False	False	False	False	
 88302309	"1938073851"	"1938073851"	McSweeney's Issue 46 (Mcsweeney's Quarterly Concern)			Hardcover	2014	3						6/20/2014						5/26/2014		False	False	False	True	False	False	
-88383525	"1495421082"	"1495421082"	The Jungle Book		Rudyard Kipling	Paperback	2014													5/11/2014		False	True	False	False	False	False	
+88383525	"1495421082"	"1495421082"	The Jungle Book	Kipling, Rudyard; Katja Königsberg	Rudyard Kipling	Paperback	2014													5/11/2014		False	True	False	False	False	False	

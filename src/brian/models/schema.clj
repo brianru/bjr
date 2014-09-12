@@ -12,7 +12,14 @@
     (index :start :isbn)
 
     (relation :finish [:isbn :when])
-    (index :finish :isbn)))
+    (index :finish :isbn)
+    
+    (relation :language [:name :commits])
+    (index :language :name)
+
+    (relation :repos [:name :commits])
+    (index :repos :name)
+    ))
 
 ; Connect relations (think joins)..
 ; TODO How do I exclude matches?

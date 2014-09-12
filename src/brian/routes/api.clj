@@ -37,6 +37,15 @@
   (take n (sort-by :when (complement compare) (books-read))))
   )
 
+(defn commits-by-day [] nil)
+
+(defn languages [] nil)
+
+(defn repos [] nil)
+
 (defroutes api-routes
   (GET "/api/books-read" [] (books-read))
-  (GET "/api/books-by-year" [] (books-read-by-year)))
+  (GET "/api/books-by-year" [] (books-read-by-year))
+  (GET "/api/commits-by-day" [] (commits-by-day))
+  (GET "/api/languages" [] (languages))
+  (GET "/api/repos" [] (repos)))
