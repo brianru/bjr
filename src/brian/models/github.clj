@@ -22,11 +22,13 @@
                (-> body (:usage) (:languages)))]
     repos))
 
+(comment
 (let [raw (http/get source)
       body (keywordize-keys (json/read-str (:body raw)))
       repos ((util/mk-parser [:repos (:repos github-db-map)])
              (:repositories body))]
   repos)
+  )
 
 (defn refresh
   "TODO Fetch new github data if a day has elapsed."

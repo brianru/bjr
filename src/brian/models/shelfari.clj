@@ -5,6 +5,7 @@
             [clojure.data.json :as json]
             [brian.models.util :as util]))
 
+;; TODO get missing attrs from open library and do a 'merge' using isbn
 (def shelfari-db-map
   {:book (sorted-map "ISBN" :isbn
                      "Author" :author

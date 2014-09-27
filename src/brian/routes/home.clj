@@ -2,8 +2,8 @@
 (ns brian.routes.home
   (:require [compojure.core :refer :all]
             [brian.views.layout :as layout]
+            [brian.models.blog :refer [blog-posts]]
             [hiccup.core :refer :all]))
-
 
 (defn icon
   "Construct markup for icon links.
@@ -20,7 +20,6 @@
 
 (defn home
   "# Homepage
-
 
    ## Top - first impression
    
@@ -52,5 +51,34 @@
       [:div.col-md-4.text-center]]] ;; fitbit
     ))
 
+(defn mk-blog-headline [{:keys [id title date] :as post}]
+  [:div.headline
+   [:a {:href (str "/blog/" id)}
+    [:span title]]])
+
+(defn blog
+  "Display list of blog post titles."
+  []
+  (layout/common
+    [:div.top-banner
+     [:div (map mk-blog-headline blog-posts)]]
+    ))
+
+(defn mk-blog-post [{:keys [body date] :as post}]
+  [:div.body [:span body]])
+
+(defn blog-post
+  "Display blog post."
+  [id]
+  (let [post (get blog-posts id)]
+    (layout/common
+      [:div.top-banner
+       [:div
+        (mk-blog-headline post)]
+       [:div
+        (mk-blog-post post)]])))
+
 (defroutes home-routes
-  (GET "/" [] (home)))
+  (GET "/" [] (home))
+  (GET "/blog" [] (blog))
+  (GET "/blog/:id" [id] (blog-post id)))

@@ -6,6 +6,7 @@
             ))
 
 (def db-path "resources/brian.db")
+(def shelfari-path "resources/shelfari_data.tsv")
 
 (defn save-db [db]
   (spit db-path db))
@@ -16,7 +17,7 @@
 (def db
   (if (.exists (clojure.java.io/as-file db-path))
     (load-db)
-    (let [init (parse-shelfari "resources/shelfari_data.tsv")
+    (let [init (parse-shelfari shelfari-path)
           res  (apply (partial add-tuples db-base) init)]
       (do (save-db res)
           res))))
