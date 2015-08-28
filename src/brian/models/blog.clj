@@ -13,4 +13,4 @@
         posts (map parse-post file-contents)]
     (map println posts)))
 
-(load-posts "resources/blog/drafts/")
+#_(load-posts "resources/blog/drafts/")

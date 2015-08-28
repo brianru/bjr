@@ -13,7 +13,7 @@
   []
   (-> #'app
     ; Makes static assets in $PROJECT_DIR/resources/public/ available. 
-    (wrap-file "resources")
+    ;(wrap-file "resources")
     
     ; Content-Type, Content-Length, and Last Modified headers
     ; for files in body
@@ -28,9 +28,9 @@
                    {:port port
                     :init init
                     :auto-reload? true
+                    :open-browser? false
                     :destroy destroy
-                    :join true}))
-    (println (str "You can view the site at http://localhost:" port))))
+                    :join true}))))
 
 (defn stop-server
   "Stop the server from the REPL."

@@ -1,7 +1,7 @@
-FROM dockerfile/java
+FROM java
 MAINTAINER Brian James Rubinton <brianrubinton@gmail.com>
 
-RUN sudo apt-get update
+RUN apt-get update
 
 ADD target/brian-for-docker-standalone.jar /srv/brian.jar
 
