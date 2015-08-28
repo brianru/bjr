@@ -3,7 +3,7 @@
   (:require [compojure.core :refer :all]
             [clj-time.core :as t]
             [clj-time.format :as f]
-            [brian.models.init :refer [db]]
+            ;[brian.models.init :refer [db]]
             [brian.models.db :refer [books-read]]
             [fogus.datalog.bacwn :refer [q]]
             [fogus.datalog.bacwn.macros :refer [?-]]))

@@ -35,4 +35,3 @@
   []
   (parse-github source))
 
-(refresh)

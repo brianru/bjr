@@ -3,6 +3,7 @@
   (:require [brian.models.shelfari :refer [parse-shelfari]] 
             [brian.models.schema :refer [db-base]]
             [fogus.datalog.bacwn.impl.database :refer [add-tuples]]
+            [clojure.java.io :as io]
             ))
 
 (def db-path "resources/brian.db")
@@ -15,9 +16,10 @@
   (read-string (slurp db-path)))
 
 (def db
-  (if (.exists (clojure.java.io/as-file db-path))
-    (load-db)
-    (let [init (parse-shelfari shelfari-path)
-          res  (apply (partial add-tuples db-base) init)]
-      (do (save-db res)
-          res))))
+  #_(if (.exists (io/as-file db-path))
+      (load-db)
+      (let [init (parse-shelfari shelfari-path)
+            res  (apply (partial add-tuples db-base) init)]
+        (do (save-db res)
+            res)))
+  nil)
