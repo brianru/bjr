@@ -44,11 +44,11 @@
             ; use initial when viewed from mobile phone
             [:li [:span.my-name "Brian James Rubinton"]]
             [:li github-icon twitter-icon linkedin-icon]]]]
-    [:div.dashboard.container-fluid
-     [:div.row ;; d3 populates these with svgs
-      [:div.col-md-4.text-center.github]
-      [:div.col-md-4.text-center.reading] ;; http://www.githubarchive.org/
-      [:div.col-md-4.text-center]]] ;; fitbit
+    ;;[:div.dashboard.container-fluid
+    ;; [:div.row ;; d3 populates these with svgs
+    ;;  [:div.col-md-4.text-center.github]
+    ;;  [:div.col-md-4.text-center.reading] ;; http://www.githubarchive.org/
+    ;;  [:div.col-md-4.text-center]]] ;; fitbit
     ))
 
 (defn mk-blog-headline [{:keys [id title date] :as post}]

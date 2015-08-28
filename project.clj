@@ -21,6 +21,7 @@
          :init brian.handler/init
          :destroy brian.handler/destroy}
   :aot :all
+  :main brian.main
   :profiles
   {:production
    {:ring
